@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_extras.grid import grid
@@ -8,7 +9,8 @@ from functions import (
     option_menu,
     image_border_radius)
 
-px.set_mapbox_access_token(open(".mapbox_token").read())
+#px.set_mapbox_access_token(open(".mapbox_token").read())
+px.set_mapbox_access_token(os.getenv("MAPBOX_TOKEN"))
 
 st.set_page_config(
     page_title = "Formula 1 Analytics | Overview",

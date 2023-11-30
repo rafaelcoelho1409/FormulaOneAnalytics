@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import os
 import fastf1
 import fastf1.plotting
 from fastf1.core import Laps
@@ -20,7 +21,8 @@ from functions import (
     load_f1_session,
     season_results)
 
-px.set_mapbox_access_token(open(".mapbox_token").read())
+#px.set_mapbox_access_token(open(".mapbox_token").read())
+px.set_mapbox_access_token(os.getenv("MAPBOX_TOKEN"))
 fastf1.Cache.enable_cache("./cache_fastf1")
 
 st.set_page_config(
