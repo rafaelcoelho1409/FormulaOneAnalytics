@@ -23,6 +23,10 @@ from functions import (
 
 #px.set_mapbox_access_token(open(".mapbox_token").read())
 px.set_mapbox_access_token(os.getenv("MAPBOX_TOKEN"))
+try:
+    os.mkdir("cache_fastf1")
+except:
+    pass
 fastf1.Cache.enable_cache("./cache_fastf1")
 
 st.set_page_config(
