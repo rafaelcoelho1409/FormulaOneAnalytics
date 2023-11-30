@@ -32,13 +32,13 @@ with cols_[3]:
         label = "$$\\textbf{Seasons}$$",
         use_container_width = True)
 if HOME:
-    switch_page("Home")
+    switch_page("app")
 if OVERVIEW:
-    switch_page("Overview")
+    switch_page("overview")
 if INSIGHTS:
-    switch_page("Insights")
+    switch_page("insights")
 if SEASONS:
-    switch_page("Seasons")
+    switch_page("seasons")
 
 with st.expander(
     label = "Author",

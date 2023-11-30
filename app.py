@@ -27,13 +27,13 @@ ABOUT_US = st.button(
     label = "$$\\textbf{About Us}$$",
     use_container_width = True)
 if OVERVIEW:
-    switch_page("Overview")
+    switch_page("overview")
 if INSIGHTS:
-    switch_page("Insights")
+    switch_page("insights")
 if SEASONS:
-    switch_page("Seasons")
+    switch_page("seasons")
 if ABOUT_US:
-    switch_page("About Us")
+    switch_page("about")
 
 option_menu()
 

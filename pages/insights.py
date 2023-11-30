@@ -54,15 +54,15 @@ with cols_[4]:
         label = "$$\\textbf{About Us}$$",
         use_container_width = True)
 if HOME:
-    switch_page("Home")
+    switch_page("app")
 if OVERVIEW:
-    switch_page("Overview")
+    switch_page("overview")
 if INSIGHTS:
-    switch_page("Insights")
+    switch_page("insights")
 if SEASONS:
-    switch_page("Seasons")
+    switch_page("seasons")
 if ABOUT_US:
-    switch_page("About")
+    switch_page("about")
 
 st.divider()
 image_border_radius("./assets/formula_one_logo.jpg", 20, 270, 150, grid_title)
