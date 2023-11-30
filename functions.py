@@ -14,11 +14,11 @@ def read_data(filename):
 
 def option_menu():
     show_pages([
-        Page("app.py", "Formula 1 Analytics"),
+        Page("app.py", "Home"),
         Page("pages/overview.py", "Overview"),
         Page("pages/insights.py", "Insights"),
         Page("pages/seasons.py", "Seasons"),
-        Page("pages/about.py", "About Us")
+        Page("pages/about.py", "About")
     ])
     add_indentation()
 

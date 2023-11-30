@@ -32,7 +32,7 @@ with cols_[3]:
         label = "$$\\textbf{Seasons}$$",
         use_container_width = True)
 if HOME:
-    switch_page("Formula 1 Analytics")
+    switch_page("Home")
 if OVERVIEW:
     switch_page("Overview")
 if INSIGHTS:
