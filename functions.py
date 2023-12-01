@@ -18,6 +18,7 @@ def option_menu():
         Page("pages/overview.py", "Overview"),
         Page("pages/insights.py", "Insights"),
         Page("pages/seasons.py", "Seasons"),
+        Page("pages/ai_space.py", "AI Space"),
         Page("pages/about.py", "About")
     ])
     add_indentation()

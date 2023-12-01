@@ -14,7 +14,7 @@ option_menu()
 
 st.title("$$\\large{\\textbf{About Us}}$$")
 
-cols_ = st.columns(4)
+cols_ = st.columns(5)
 with cols_[0]:
     HOME = st.button(
         label = "$$\\textbf{Home}$$",
@@ -31,14 +31,20 @@ with cols_[3]:
     SEASONS = st.button(
         label = "$$\\textbf{Seasons}$$",
         use_container_width = True)
+with cols_[4]:
+    AI_SPACE = st.button(
+        label = "$$\\textbf{AI Space}$$",
+        use_container_width = True)
 if HOME:
-    switch_page("app")
+    switch_page("home")
 if OVERVIEW:
     switch_page("overview")
 if INSIGHTS:
     switch_page("insights")
 if SEASONS:
     switch_page("seasons")
+if AI_SPACE:
+    switch_page("ai_space")
 
 with st.expander(
     label = "Author",
