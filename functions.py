@@ -129,7 +129,7 @@ def season_results(_ergast, season_ftr):
 
 def page_buttons():
     st.write(" ")
-    cols_ = st.columns(5)
+    cols_ = st.columns(6)
     with cols_[0]:
         HOME = st.button(
             label = "$$\\textbf{Home}$$",
@@ -147,16 +147,22 @@ def page_buttons():
             label = "$$\\textbf{Seasons}$$",
             use_container_width = True)
     with cols_[4]:
+        AI_SPACE = st.button(
+            label = "$$\\textbf{AI Space}$$",
+            use_container_width = True)
+    with cols_[5]:
         ABOUT_US = st.button(
             label = "$$\\textbf{About Us}$$",
             use_container_width = True)
     if HOME:
-        switch_page("app")
+        switch_page("home")
     if OVERVIEW:
         switch_page("overview")
     if INSIGHTS:
         switch_page("insights")
     if SEASONS:
         switch_page("seasons")
+    if AI_SPACE:
+        switch_page("ai space")
     if ABOUT_US:
         switch_page("about")

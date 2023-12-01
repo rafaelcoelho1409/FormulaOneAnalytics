@@ -44,7 +44,7 @@ if INSIGHTS:
 if SEASONS:
     switch_page("seasons")
 if AI_SPACE:
-    switch_page("ai_space")
+    switch_page("ai space")
 
 with st.expander(
     label = "Author",
