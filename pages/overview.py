@@ -7,7 +7,8 @@ from streamlit_extras.grid import grid
 from streamlit_extras.switch_page_button import switch_page
 from functions import (
     option_menu,
-    image_border_radius)
+    image_border_radius,
+    page_buttons)
 
 #px.set_mapbox_access_token(open(".mapbox_token").read())
 px.set_mapbox_access_token(os.getenv("MAPBOX_TOKEN"))
@@ -32,38 +33,7 @@ container1 = grid_title.container()
 container1.title("$$\\large{\\textbf{Formula 1 Analytics | Overview}}$$")
 container1.caption("Author: Rafael Silva Coelho")
 
-st.write(" ")
-cols_ = st.columns(5)
-with cols_[0]:
-    HOME = st.button(
-        label = "$$\\textbf{Home}$$",
-        use_container_width = True)
-with cols_[1]:
-    OVERVIEW = st.button(
-        label = "$$\\textbf{Overview}$$",
-        use_container_width = True)
-with cols_[2]:
-    INSIGHTS = st.button(
-        label = "$$\\textbf{Insights}$$",
-        use_container_width = True)
-with cols_[3]:
-    SEASONS = st.button(
-        label = "$$\\textbf{Seasons}$$",
-        use_container_width = True)
-with cols_[4]:
-    ABOUT_US = st.button(
-        label = "$$\\textbf{About Us}$$",
-        use_container_width = True)
-if HOME:
-    switch_page("app")
-if OVERVIEW:
-    switch_page("overview")
-if INSIGHTS:
-    switch_page("insights")
-if SEASONS:
-    switch_page("seasons")
-if ABOUT_US:
-    switch_page("about")
+page_buttons()
 
 st.divider()
 image_border_radius("./assets/formula_one_logo.jpg", 20, 270, 150, grid_title)
