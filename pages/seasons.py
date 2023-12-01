@@ -200,15 +200,18 @@ with tabs[0]: #CHAMPIONSHIP
         fig1 = go.Figure()
         for drv in session.drivers:
             drv_laps = session.laps.pick_driver(drv)
-            fig1.add_trace(
-                go.Scatter(
-                    x = drv_laps["LapNumber"],
-                    y = drv_laps["Position"],
-                    mode = "markers+lines",
-                    name = drv_laps['Driver'].iloc[0],
-                    marker = {"size": 8}
-                )
+            try:
+                fig1.add_trace(
+                    go.Scatter(
+                        x = drv_laps["LapNumber"],
+                        y = drv_laps["Position"],
+                        mode = "markers+lines",
+                        name = drv_laps['Driver'].iloc[0],
+                        marker = {"size": 8}
+                    )
             )
+            except:
+                pass
         fig1.update_layout(
             xaxis_title = "Lap Number",
             yaxis_title = "Position",
