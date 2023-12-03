@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import base64
 import fastf1
 from fastf1.ergast import Ergast
@@ -7,7 +8,25 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_extras.switch_page_button import switch_page
 from st_pages import show_pages, Page, Section, add_indentation
-
+#MACHINE LEARNING
+from sklearn.preprocessing import (
+    StandardScaler,
+    MinMaxScaler,
+    RobustScaler,
+    Normalizer
+)
+from sklearn.cluster import (
+    KMeans,
+    MeanShift,
+    estimate_bandwidth,
+    AgglomerativeClustering,
+    BisectingKMeans,
+    OPTICS
+)
+from sklearn.neighbors import kneighbors_graph
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from umap import UMAP
 
 @st.cache_data
 def read_data(filename):
@@ -166,3 +185,101 @@ def page_buttons():
         switch_page("ai space")
     if ABOUT_US:
         switch_page("about")
+
+@st.cache_resource
+def get_scaler_data(scaler_ftr, data):
+    scaler_dict = {
+            "Standard Scaler": StandardScaler(), #mean 0 and std 1
+            "Minimum-Maximum Scaler": MinMaxScaler(), #min -1 and max 1
+            "Robust Scaler": RobustScaler(), #For many outliers,
+            "Normalizer": Normalizer()
+        }
+    scaler = scaler_dict[scaler_ftr].fit(data)
+    data_scaled = scaler.transform(data)
+    return data_scaled
+
+@st.cache_resource
+def get_umap_data(
+    data_scaled
+):
+    umap_2d = UMAP(n_components = 2)
+    umap_3d = UMAP(n_components = 3)
+    data_umap_2d = umap_2d.fit_transform(data_scaled)
+    data_umap_3d = umap_3d.fit_transform(data_scaled)
+    return data_umap_2d, data_umap_3d
+
+@st.cache_resource
+def get_cluster_data(
+    cluster_ftr, 
+    data_umap_2d,
+    data_umap_3d,
+    n_clusters = None,
+    connectivity_ftr = None,
+    linkage_ftr = None):
+    if cluster_ftr == "KMeans":
+        cluster_model_2d = KMeans(n_clusters = n_clusters)
+        cluster_model_3d = KMeans(n_clusters = n_clusters)
+        cluster_model_2d.fit(data_umap_2d)
+        cluster_model_3d.fit(data_umap_3d)
+    elif cluster_ftr == "Mean Shift":
+        bandwidth_2d = estimate_bandwidth(
+            data_umap_2d, 
+            quantile = 0.2, 
+            n_samples = 500)
+        cluster_model_2d = MeanShift(
+            bandwidth = bandwidth_2d, 
+            bin_seeding = True)
+        bandwidth_3d = estimate_bandwidth(
+            data_umap_3d, 
+            quantile = 0.2, 
+            n_samples = 500)
+        cluster_model_3d = MeanShift(
+            bandwidth = bandwidth_3d, 
+            bin_seeding = True)
+        cluster_model_2d.fit(data_umap_2d)
+        cluster_model_3d.fit(data_umap_3d)
+    elif cluster_ftr == "Agglomerative Clustering":
+        if connectivity_ftr == "K-Nearest Neighbors Graph":
+            connectivity_2d = kneighbors_graph(
+                data_umap_2d,
+                n_clusters,
+                include_self = False
+            )
+            connectivity_3d = kneighbors_graph(
+                data_umap_3d,
+                n_clusters,
+                include_self = False
+            )
+        else:
+            connectivity_2d, connectivity_3d = None, None
+        cluster_model_2d = AgglomerativeClustering(
+            linkage = linkage_ftr,
+            connectivity = connectivity_2d,
+            n_clusters = n_clusters
+        )
+        cluster_model_2d.fit(data_umap_2d)
+        cluster_model_3d = AgglomerativeClustering(
+            linkage = linkage_ftr,
+            connectivity = connectivity_3d,
+            n_clusters = n_clusters
+        )
+        cluster_model_3d.fit(data_umap_3d)
+    elif cluster_ftr == "Bisecting KMeans":
+        cluster_model_2d = BisectingKMeans(n_clusters = n_clusters)
+        cluster_model_3d = BisectingKMeans(n_clusters = n_clusters)
+        cluster_model_2d.fit(data_umap_2d)
+        cluster_model_3d.fit(data_umap_3d)
+    elif cluster_ftr == "OPTICS":
+        cluster_model_2d = OPTICS(
+            min_samples = 50, 
+            xi = 0.05, 
+            min_cluster_size = 0.05)
+        cluster_model_3d = OPTICS(
+            min_samples = 50, 
+            xi = 0.05, 
+            min_cluster_size = 0.05)
+        cluster_model_2d.fit(data_umap_2d)
+        cluster_model_3d.fit(data_umap_3d)
+    return cluster_model_2d, cluster_model_3d
+        #####################################
+
