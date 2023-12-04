@@ -11,7 +11,9 @@ st.set_page_config(
     layout = "wide",
     initial_sidebar_state = "collapsed"
 )
-#st.image("assets/f1_home.jpg", use_column_width = True)
+
+option_menu()
+
 layout = grid([1, 0.2, 2], vertical_align = True)
 first_column = layout.container()
 layout.container()
@@ -45,8 +47,6 @@ if AI_SPACE:
     switch_page("ai space")
 if ABOUT_US:
     switch_page("about")
-
-option_menu()
 
 # Function to create a scrollable section
 def create_scrollable_section(content, height="400px"):
