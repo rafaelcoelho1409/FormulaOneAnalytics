@@ -102,7 +102,6 @@ with tabs[0]: #CHAMPIONSHIP
     with cols1[0]:
         st.subheader("Circuit (track map)")
         lap = session.laps.pick_fastest()
-        #st.write(lap["Position"])
         pos = lap.get_pos_data()
         circuit_info = session.get_circuit_info()
         # Define a helper function for rotating points
@@ -351,8 +350,6 @@ with tabs[0]: #CHAMPIONSHIP
         # Calculate time delta from the fastest lap
         pole_lap = fastest_laps.pick_fastest()
         fastest_laps['LapTimeDelta'] = fastest_laps['LapTime'] - pole_lap['LapTime']
-        # Create a list of team colors per lap
-        #team_colors = [fastf1.plotting.team_color(lap['Team']) for _, lap in fastest_laps.iterlaps()]
         # Create Plotly figure
         fig = go.Figure()
         # Add horizontal bars to the figure
@@ -397,8 +394,6 @@ with tabs[0]: #CHAMPIONSHIP
                     x = driver_laps[driver_laps['Driver'] == driver]['Driver'],
                     y = driver_laps[driver_laps['Driver'] == driver]['LapTime(s)'],
                     name = driver,
-                    #line_color = driver_colors[driver],
-                    #orientation = "v"
                 ))
         # Map compounds to colors
         compound_colors = {'SOFT': 'red', 'MEDIUM': 'yellow', 'HARD': 'blue'}  # Example mapping
@@ -413,7 +408,6 @@ with tabs[0]: #CHAMPIONSHIP
                     color = driver_laps['CompoundColor'], 
                     symbol = 'circle', 
                     size = 5),
-                #showlegend = False
             ))
         # Update layout
         fig.update_layout(
@@ -438,8 +432,6 @@ with tabs[1]: #DRIVERS
     driver_code = drivers_options[drivers_options["name"] == driver_name]["code"].iloc[0]
     driver_image_url_surname = drivers_options[drivers_options["name"] == driver_name]["surname"].str.lower().str.replace(" ", "").iloc[0]
     driver_image_url = f"https://media.formula1.com/content/dam/fom-website/drivers/{season_ftr}Drivers/{driver_image_url_surname}.jpg"
-    #driver_image_url = session.results[
-    #    session.results["Abbreviation"] == driver_code]["HeadshotUrl"].iloc[0]
     driver_constructor = session.results[
         session.results["Abbreviation"] == driver_code]["TeamName"].iloc[0]
     st.divider()

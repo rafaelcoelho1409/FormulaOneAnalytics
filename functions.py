@@ -281,5 +281,19 @@ def get_cluster_data(
         cluster_model_2d.fit(data_umap_2d)
         cluster_model_3d.fit(data_umap_3d)
     return cluster_model_2d, cluster_model_3d
-        #####################################
+
+def create_scrollable_section(content, height="400px"):
+    # Defining the HTML and CSS
+    scrollable_section_html = f"""
+    <div style="
+        overflow-y: scroll;
+        height: {height};
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+        ">
+        {content}
+    </div>
+    """
+    return scrollable_section_html        
 

@@ -45,10 +45,7 @@ tabs = st.tabs([
     "$$\\textbf{Races}$$"
 ])
 with tabs[0]: #CIRCUITS
-    #st.write("$$\\underline{\\huge{\\textbf{Circuits}}}$$")
     st.markdown("<i><h1 style='text-align:center'>Circuits</h1></i>", unsafe_allow_html = True)
-    #cols1 = st.columns(2)
-    #with cols1[0]:
     st.subheader("All circuits used by Formula 1 (1950-2023)")
     fig1 = px.scatter_mapbox(
         circuits,
@@ -56,7 +53,6 @@ with tabs[0]: #CIRCUITS
         lon = "lng",
         color = "country",
         center = {"lat": 53.9438324, "lon": -2.55056405},
-        #hover_name = "name",
         zoom = 1.5,
         custom_data = ["name", "location", "country"]
     )
@@ -69,7 +65,6 @@ with tabs[0]: #CIRCUITS
     st.plotly_chart(
         fig1,
         use_container_width = True)
-    #with cols1[1]:
     geojson_url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
     df1 = circuits[[
         "country",
@@ -152,7 +147,6 @@ with tabs[0]: #CIRCUITS
                     for x in links.iterrows():
                         st.write(f"[{x[1]['name']}, {x[1]['location']}]({x[1]['url']})")
 with tabs[1]: #CONSTRUCTORS
-    #st.write("$$\\underline{\\huge{\\textbf{Constructors}}}$$")
     st.markdown("<i><h1 style='text-align:center'>Constructors</h1></i>", unsafe_allow_html = True)
     geojson_url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
     df1 = constructors[[
@@ -235,7 +229,6 @@ with tabs[1]: #CONSTRUCTORS
                     for x in links.iterrows():
                         st.write(f"[{x[1]['name']}]({x[1]['url']})")
 with tabs[2]: #DRIVERS
-    #st.write("$$\\underline{\\huge{\\textbf{Drivers}}}$$")
     st.markdown("<i><h1 style='text-align:center'>Drivers</h1></i>", unsafe_allow_html = True)
     geojson_url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
     df1 = drivers[[
@@ -341,11 +334,8 @@ with tabs[2]: #DRIVERS
         scrollable_df, 
         unsafe_allow_html = True)
 with tabs[3]: #RACES
-    #st.write("$$\\underline{\\huge{\\textbf{Races}}}$$")
     st.markdown("<i><h1 style='text-align:center'>Races</h1></i>", unsafe_allow_html = True)
     geojson_url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
-    #cols1 = st.columns(2)
-    #with cols1[0]:
     df1 = races_circuits[[
         "country",
         "iso_alpha"
@@ -370,7 +360,6 @@ with tabs[3]: #RACES
     st.plotly_chart(
         fig1,
         use_container_width = True)
-    #with cols1[1]:
     df2 = races_circuits[[
         "name_circuit",
         "location",
@@ -392,14 +381,12 @@ with tabs[3]: #RACES
         center = {"lat": 53.9438324, "lon": -2.55056405},
         size = "count",
         zoom = 0,
-        #opacity = 1,
         title = "Amount of races by circuit (1950-2023)",
         custom_data = ["name_circuit", "location", "count"],
         color_discrete_sequence = px.colors.sequential.Rainbow
     )
     fig2.update_traces(
         showlegend = False,
-        #marker = {"size": 10},
         hovertemplate = "<b>%{customdata[0]}</b>"
                         "<br>%{customdata[1]}"
                         "<br><b>Count: %{customdata[2]}</b>"

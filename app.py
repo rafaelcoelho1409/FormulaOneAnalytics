@@ -4,7 +4,8 @@ from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.grid import grid
 from functions import (
     option_menu, 
-    image_border_radius)
+    image_border_radius,
+    create_scrollable_section)
 
 st.set_page_config(
     page_title = "Formula 1 Analytics",
@@ -48,22 +49,7 @@ if AI_SPACE:
 if ABOUT_US:
     switch_page("about")
 
-# Function to create a scrollable section
-def create_scrollable_section(content, height="400px"):
-    # Defining the HTML and CSS
-    scrollable_section_html = f"""
-    <div style="
-        overflow-y: scroll;
-        height: {height};
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 10px 0;
-        ">
-        {content}
-    </div>
-    """
-    return scrollable_section_html
-
+second_column.latex("\\Huge{\\textbf{Formula 1 Analytics}}")
 # Define your content
 overview_content = """
 <i><h1>OVERVIEW</h1></i>
