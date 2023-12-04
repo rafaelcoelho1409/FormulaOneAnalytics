@@ -369,14 +369,23 @@ elif cluster_ftr == "OPTICS":
                 marker_color = color, 
                 name = f'Cluster {klass}'))
 st.divider()
+links_dict = {
+    "KMeans": "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+    "Mean Shift": "https://scikit-learn.org/stable/modules/clustering.html#mean-shift",
+    "Agglomerative Clustering": "https://scikit-learn.org/stable/modules/clustering.html#different-linkage-type-ward-complete-average-and-single-linkage",
+    "Bisecting KMeans": "https://scikit-learn.org/stable/modules/clustering.html#bisecting-k-means",
+    "OPTICS": "https://scikit-learn.org/stable/modules/clustering.html#optics",
+    "Uniform Manifold Approximation and Projection (UMAP)": "https://umap-learn.readthedocs.io/en/latest/index.html"
+}
 st.markdown(
     f"<i><h3 style='text-align:center'>Dimensionality Reduction</h3></i>", 
     unsafe_allow_html = True)
 st.markdown(
-    f"<h4 style='text-align:center'>{cluster_ftr}</h4>", 
+    f"<a href='{links_dict[cluster_ftr]}'><h4 style='text-align:center'>{cluster_ftr}</h4>", 
     unsafe_allow_html = True)
+umap_link = links_dict["Uniform Manifold Approximation and Projection (UMAP)"]
 st.markdown(
-    f"<h4 style='text-align:center'>Uniform Manifold Approximation and Projection (UMAP)</h4>", 
+    f"<a href='{umap_link}'><h4 style='text-align:center'>Uniform Manifold Approximation and Projection (UMAP)</h4>", 
     unsafe_allow_html = True)
 fig_cols = st.columns(2)
 with fig_cols[0]:

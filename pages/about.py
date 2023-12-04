@@ -64,7 +64,8 @@ with st.expander(
     """, unsafe_allow_html = True)
     #test = container1.columns(3)
     #with test[0]:
-    container1.markdown("""
+    buttons = container1.columns(3)
+    buttons[0].markdown("""
     <div>
     <h1>
     <a 
@@ -75,7 +76,7 @@ with st.expander(
     </h1>
     </div>""", unsafe_allow_html = True)
     #with test[1]:
-    container1.markdown("""
+    buttons[1].markdown("""
     <div>
     <h1>
     <a 
@@ -86,7 +87,7 @@ with st.expander(
     </h1>
     </div>""", unsafe_allow_html = True)
     #with test[2]:
-    container1.markdown("""
+    buttons[2].markdown("""
     <div>
     <h1>
     <a
@@ -96,3 +97,6 @@ with st.expander(
     </a>
     </h1>
     </div>""", unsafe_allow_html = True)
+####################################
+
+

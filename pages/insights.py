@@ -174,14 +174,14 @@ with tabs[1]: #CONSTRUCTORS
     title_cont = st.container()
     grid_ftr1 = grid(2, vertical_align = True)
     country_filter = grid_ftr1.multiselect(
-        label = "Country",
-        options = results["country"].sort_values().unique(),
-        default = ["Italy"],
+        label = "Nationality",
+        options = results["constructor_nationality"].sort_values().unique(),
+        default = ["Austrian"],
         key = "country2"
     )
     constructor_filter = grid_ftr1.selectbox(
         label = "Constructor",
-        options = results[results["country"].isin(country_filter)]["constructor_name"].sort_values().unique(),
+        options = results[results["constructor_nationality"].isin(country_filter)]["constructor_name"].sort_values().unique(),
         #index = 50
     )
     title_cont.markdown("<i><h1 style='text-align:center'>Constructors</h1></i>", unsafe_allow_html = True)
@@ -271,14 +271,14 @@ with tabs[2]: #DRIVERS
     title_cont = st.container()
     grid_ftr1 = grid(2, vertical_align = True)
     country_filter = grid_ftr1.multiselect(
-        label = "Country",
-        options = results["country"].sort_values().unique(),
-        default = ["Germany"],
+        label = "Nationality",
+        options = results["driver_nationality"].sort_values().unique(),
+        default = ["French"],
         key = "country3"
     )
     driver_filter = grid_ftr1.selectbox(
         label = "Driver",
-        options = results[results["country"].isin(country_filter)]["driver_name"].sort_values().unique(),
+        options = results[results["driver_nationality"].isin(country_filter)]["driver_name"].sort_values().unique(),
         #index = 279
     )
     title_cont.markdown("<i><h1 style='text-align:center'>Drivers</h1></i>", unsafe_allow_html = True)
