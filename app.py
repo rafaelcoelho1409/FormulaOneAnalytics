@@ -106,3 +106,15 @@ combined_content = "<hr>".join([
 scrollable_section = create_scrollable_section(combined_content, height="650px")
 # Display the scrollable section
 second_column.markdown(scrollable_section, unsafe_allow_html=True)
+
+with st.expander(
+    label = "Formula 1 Analytics",
+    expanded = True
+):
+    cols1 = grid(5)
+    cols2 = grid(5)
+    for i in range(1, 6):
+        cols1.image(f"assets/f1analytics{i:0>2}.png")
+    for i in range(6, 11):
+        cols2.image(f"assets/f1analytics{i:0>2}.png")
+st.divider()
