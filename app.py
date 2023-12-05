@@ -19,7 +19,7 @@ layout = grid([1, 0.2, 2], vertical_align = True)
 first_column = layout.container()
 layout.container()
 second_column = layout.container()
-image_border_radius("assets/f1_home.jpg", 20, 470, 275, first_column)
+image_border_radius("assets/f1_home.jpg", 20, 100, 100, first_column)
 first_column.latex("\\Huge{\\textbf{Formula 1 Analytics}}")
 first_column.caption("Author: Rafael Silva Coelho")
 
@@ -98,8 +98,11 @@ revolutionize the way fans, teams, and analysts engage with the world of Formula
 Stay tuned for an exciting journey into the future of sports analytics.
 </div>"""
 # Combine all content
-combined_content = overview_content + "<hr>" + insights_content + "<hr>" + seasons_content + "<hr>" + ai_space_content
-# Create scrollable section
+combined_content = "<hr>".join([
+    overview_content, 
+    insights_content, 
+    seasons_content, 
+    ai_space_content])# Create scrollable section
 scrollable_section = create_scrollable_section(combined_content, height="650px")
 # Display the scrollable section
 second_column.markdown(scrollable_section, unsafe_allow_html=True)

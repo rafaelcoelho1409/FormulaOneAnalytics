@@ -50,7 +50,7 @@ container1.caption("Author: Rafael Silva Coelho")
 page_buttons()
 
 st.divider()
-image_border_radius("./assets/formula_one_logo.jpg", 20, 270, 150, grid_title)
+image_border_radius("./assets/formula_one_logo.jpg", 20, 100, 100, grid_title)
 
 ergast = Ergast()
 
