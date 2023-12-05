@@ -106,6 +106,20 @@ combined_content = "<hr>".join([
 scrollable_section = create_scrollable_section(combined_content, height="650px")
 # Display the scrollable section
 second_column.markdown(scrollable_section, unsafe_allow_html=True)
+st.divider()
+
+cars_image_link = [
+    "https://c4.wallpaperflare.com/wallpaper/247/332/980/car-formula-1-ferrari-f1-wallpaper-preview.jpg",
+    "https://c4.wallpaperflare.com/wallpaper/410/494/431/racing-f1-car-formula-1-race-car-hd-wallpaper-preview.jpg",
+    "https://www.hdcarwallpapers.com/walls/aston_martin_amr21_2021_f1_car_5k-HD.jpg",
+    "https://e1.pxfuel.com/desktop-wallpaper/16/662/desktop-wallpaper-over-50-formula-one-cars-f1-in-for-mo3.jpg",
+    "https://e2.365dm.com/22/10/2048x1152/skysports-sauber-audi-f1_5944001.jpg"
+]
+
+cols1 = grid(5)
+for i in range(5):
+    image_border_radius(cars_image_link[i], 15, 100, 100, cols1, is_html = True)
+st.divider()
 
 with st.expander(
     label = "Formula 1 Analytics",
