@@ -5,7 +5,7 @@ from streamlit_extras.switch_page_button import switch_page
 from functions import option_menu, image_border_radius
 
 st.set_page_config(
-    page_title = "COELHO Finance - About Us",
+    page_title = "Formula 1 Analytics - About Us",
     layout = "wide",
     initial_sidebar_state = "collapsed"
 )
