@@ -28,7 +28,7 @@ cars_image_link = [
 ]
 with first_column:
     image_carousel(["assets/f1_home.jpg"], cars_image_link)
-first_column.latex("\\Huge{\\textbf{Formula 1 Analytics}}")
+first_column.latex("\\huge{\\textbf{Formula 1 Analytics}}")
 first_column.caption("Author: Rafael Silva Coelho")
 
 OVERVIEW = first_column.button(
