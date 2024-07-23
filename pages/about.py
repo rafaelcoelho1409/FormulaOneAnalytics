@@ -37,7 +37,7 @@ with cols_[4]:
         label = "$$\\textbf{AI Space}$$",
         use_container_width = True)
 if HOME:
-    switch_page("app")
+    switch_page("home")
 if OVERVIEW:
     switch_page("overview")
 if INSIGHTS:
