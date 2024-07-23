@@ -6,6 +6,7 @@ import fastf1
 from fastf1.ergast import Ergast
 import plotly.express as px
 import plotly.graph_objects as go
+import streamfy as sy
 from streamlit_extras.switch_page_button import switch_page
 from st_pages import show_pages, Page, Section, add_indentation
 #MACHINE LEARNING
@@ -295,5 +296,15 @@ def create_scrollable_section(content, height="400px"):
         {content}
     </div>
     """
-    return scrollable_section_html        
+    return scrollable_section_html       
+
+def image_carousel(images, urls):
+    # Convert local image paths to displayable format
+    image_urls = [f"data:image/jpg;base64,{base64.b64encode(open(image, 'rb').read()).decode()}" for image in images]
+    final_urls = image_urls + urls
+    # Use the Streamfy component for the image carousel
+    image_carousel = sy.carousel(
+        items = final_urls
+    )
+    return image_carousel 
 

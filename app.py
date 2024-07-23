@@ -5,7 +5,8 @@ from streamlit_extras.grid import grid
 from functions import (
     option_menu, 
     image_border_radius,
-    create_scrollable_section)
+    create_scrollable_section,
+    image_carousel)
 
 st.set_page_config(
     page_title = "Formula 1 Analytics",
@@ -19,7 +20,14 @@ layout = grid([1, 0.2, 2], vertical_align = True)
 first_column = layout.container()
 layout.container()
 second_column = layout.container()
-image_border_radius("assets/f1_home.jpg", 20, 100, 100, first_column)
+#image_border_radius("assets/f1_home.jpg", 20, 100, 100, first_column)
+cars_image_link = [
+    "https://c4.wallpaperflare.com/wallpaper/247/332/980/car-formula-1-ferrari-f1-wallpaper-preview.jpg",
+    "https://c4.wallpaperflare.com/wallpaper/410/494/431/racing-f1-car-formula-1-race-car-hd-wallpaper-preview.jpg",
+    "https://e1.pxfuel.com/desktop-wallpaper/16/662/desktop-wallpaper-over-50-formula-one-cars-f1-in-for-mo3.jpg",
+]
+with first_column:
+    image_carousel(["assets/f1_home.jpg"], cars_image_link)
 first_column.latex("\\Huge{\\textbf{Formula 1 Analytics}}")
 first_column.caption("Author: Rafael Silva Coelho")
 
@@ -48,6 +56,11 @@ if AI_SPACE:
     switch_page("ai space")
 if ABOUT_US:
     switch_page("about")
+
+with first_column:
+    image_carousel([
+        f"assets/f1analytics{x:0>2}.png" for x in range(1, 11)
+    ], [])
 
 second_column.latex("\\Huge{\\textbf{Formula 1 Analytics}}")
 # Define your content
@@ -103,32 +116,9 @@ combined_content = "<hr>".join([
     insights_content, 
     seasons_content, 
     ai_space_content])# Create scrollable section
-scrollable_section = create_scrollable_section(combined_content, height="650px")
+scrollable_section = create_scrollable_section(
+    combined_content, 
+    height = "850px")
 # Display the scrollable section
 second_column.markdown(scrollable_section, unsafe_allow_html=True)
-st.divider()
-
-cars_image_link = [
-    "https://c4.wallpaperflare.com/wallpaper/247/332/980/car-formula-1-ferrari-f1-wallpaper-preview.jpg",
-    "https://c4.wallpaperflare.com/wallpaper/410/494/431/racing-f1-car-formula-1-race-car-hd-wallpaper-preview.jpg",
-    "https://www.hdcarwallpapers.com/walls/aston_martin_amr21_2021_f1_car_5k-HD.jpg",
-    "https://e1.pxfuel.com/desktop-wallpaper/16/662/desktop-wallpaper-over-50-formula-one-cars-f1-in-for-mo3.jpg",
-    "https://e2.365dm.com/22/10/2048x1152/skysports-sauber-audi-f1_5944001.jpg"
-]
-
-cols1 = grid(5)
-for i in range(5):
-    image_border_radius(cars_image_link[i], 15, 100, 100, cols1, is_html = True)
-st.divider()
-
-with st.expander(
-    label = "Formula 1 Analytics",
-    expanded = True
-):
-    cols1 = grid(5)
-    cols2 = grid(5)
-    for i in range(1, 6):
-        cols1.image(f"assets/f1analytics{i:0>2}.png")
-    for i in range(6, 11):
-        cols2.image(f"assets/f1analytics{i:0>2}.png")
 st.divider()
