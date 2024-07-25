@@ -144,8 +144,10 @@ def season_results(_ergast, season_ftr):
         fig.update_layout(xaxis=dict(side='top'))           # x-axis on top
         fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))  # Remove border margins
         st.plotly_chart(fig)
-    except fastf1.req.RateLimitExceededError:
-        st.warning("Error - ergast.com: 200 calls/h. Try in another moment.")
+    except:
+        st.write("No information.")
+    #except fastf1.req.RateLimitExceededError:
+    #    st.warning("Error - ergast.com: 200 calls/h. Try in another moment.")
 
 def page_buttons():
     st.write(" ")
